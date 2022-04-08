@@ -16,7 +16,7 @@ CreateThread(function ()
 		local playerPed = PlayerPedId()
 		local coords = GetEntityCoords(playerPed)
 		local babica = GetDistanceBetweenCoords(coords, vector3(-53.6833, -2523.3218, 7.4012), true)
-        local babica2 = GetDistanceBetweenCoords(coords, vector3(-440.4526, 1595.0342, 358.4680), true)
+        	local babica2 = GetDistanceBetweenCoords(coords, vector3(-440.4526, 1595.0342, 358.4680), true)
 
 		local pauza = true
         
