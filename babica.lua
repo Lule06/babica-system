@@ -86,11 +86,7 @@ CreateThread(function()
         SetBlockingOfNonTemporaryEvents(npc, true)
     end
 end)
-
-AddEventHandler('babica:revive', function()
-    babuska()
-end)
-
+	
 local peds = {
     'cs_mrs_thornhill',
 }
@@ -98,7 +94,9 @@ local peds = {
 exports['qtarget']:AddTargetModel(peds, {
     options = {
         {
-            event = "babica:revive",
+            action = function()
+              babuska()
+            end,
             icon = "fa-solid fa-hand-holding-medical",
             label = "Ozivi se",
         },
