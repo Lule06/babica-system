@@ -8,7 +8,10 @@
  |____/_/    \_\____/_____\_____/_/    \_\ |_____/   |_| |_____/   |_|  |______|_|  |_|
                                                                                        
 --]]                                                                                
-                                                                                      
+ESX = nil
+
+CreateThread(function() while ESX == nil do TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end) Wait(0) end end)
+
 if not Babica.qtarget then -- Ako je QTARGET iskljucen
 CreateThread(function ()
 	while true do
@@ -105,11 +108,20 @@ exports['qtarget']:AddTargetModel(peds, {
 })
 end
 
+local mrtav = false
+
 babuska = function()
     local player = PlayerPedId()
     local ozivljavanje = Babica.vrijeme * 1000
+    if mrtav then
     FreezeEntityPosition(player, true)
     exports.rprogress:Start('Lijecite se...', ozivljavanje)
     TriggerEvent('esx_ambulancejob:revive')
     FreezeEntityPosition(player, false)
+    else
+	ESX.ShowNotification('Nisi mrtav!')	
+    end
 end
+
+AddEventHandler('playerSpawned', function(spawn) mrtav = false end)
+AddEventHandler('esx:onPlayerDeath', function(data) mrtav = true end)
